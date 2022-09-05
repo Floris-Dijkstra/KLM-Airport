@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Airport.Plane
+namespace Airport
 {
 	/// <summary>
 	/// Manages the UI trigger hover for the plane.

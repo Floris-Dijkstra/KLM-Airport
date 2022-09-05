@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Airport.Plane
+namespace Airport
 {
 	/// <summary>
 	/// This class ensures the random destinations of the planes are sampled correctly and are not within a certain range of each other to prevent planes getting stuck.

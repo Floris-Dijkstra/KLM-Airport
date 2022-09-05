@@ -3,7 +3,7 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 
-namespace Airport.Plane
+namespace Airport
 {
 	/// <summary>
 	/// Moves the plane around airport in random directions or a set destination.

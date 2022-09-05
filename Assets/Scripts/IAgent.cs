@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-namespace Airport.Plane
+namespace Airport
 {
 	/// <summary>
 	/// Exposes the plane logic to the <see cref="AgentManager"/>.

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Airport.Plane
+namespace Airport
 {
 	/// <summary>
 	/// The lights controller of the plane.

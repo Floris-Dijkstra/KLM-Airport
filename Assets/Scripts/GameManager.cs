@@ -1,4 +1,3 @@
-using Airport.Plane;
 using System;
 using System.Collections.Generic;
 using UnityEditor;
@@ -11,46 +10,75 @@ namespace Airport
 	/// </summary>
 	public class GameManager : MonoBehaviour
 	{
+		#region Fields
 		/// <summary>
-		/// 
+		/// Reference to the UIManager.
 		/// </summary>
 		[SerializeField]
 		private UIManager uiManager;
 
+		/// <summary>
+		/// Reference to the PlaneInfoUI.
+		/// </summary>
 		[SerializeField]
 		private PlaneInfoUI planeInfoUI;
 
+		/// <summary>
+		/// List with all hangars in the scene.
+		/// </summary>
 		[SerializeField]
 		private List<Hangar> hangars;
 
+		/// <summary>
+		/// List with all planes in the scene.
+		/// </summary>
 		[SerializeField]
-		private List<Plane.Plane> planes;
+		private List<Plane> planes;
 
+		/// <summary>
+		/// List with all PlaneInfoManagers in the scene.
+		/// </summary>
 		[SerializeField]
 		private List<PlaneInfoManager> planeUIManagers;
+		#endregion
 
+		#region Unity
+		/// <summary>
+		/// Assigns all required references in the scene.
+		/// </summary>
 		private void Start()
 		{
 			hangars = GetAllObjectsOnlyInScene<Hangar>();
-			planes = GetAllObjectsOnlyInScene<Plane.Plane>();
+			planes = GetAllObjectsOnlyInScene<Plane>();
 			planeUIManagers = GetAllObjectsOnlyInScene<PlaneInfoManager>();
 
 			AssignHangarsToPlanes();
 			AssignUIButtonsToPlanes();
-			AssignPlaneUIManagerToPlaneInfoUIs();
+			AssignPlaneInfoManagerToPlaneInfoUI();
 		}
 
+		/// <summary>
+		/// Assigns the UI buttons to each plane.
+		/// </summary>
 		private void OnEnable()
 		{
 			AssignUIButtonsToPlanes();
 		}
 
+		/// <summary>
+		/// unassigns the UI buttons to each plane.
+		/// </summary>
 		private void OnDisable()
 		{
-			UnassignUIButtonToPlanes();
+			UnassignUIButtonsToPlanes();
 		}
+		#endregion
 
-		private void AssignPlaneUIManagerToPlaneInfoUIs()
+		#region Methods
+		/// <summary>
+		/// Assign the planeInfoManagers to the planeInfoUI.
+		/// </summary>
+		private void AssignPlaneInfoManagerToPlaneInfoUI()
 		{
 			foreach (PlaneInfoManager planeUIManager in planeUIManagers)
 			{
@@ -58,6 +86,10 @@ namespace Airport
 			}
 		}
 
+		/// <summary>
+		/// Assigns the hangars to each plane.
+		/// </summary>
+		/// <exception cref="Exception"></exception>
 		private void AssignHangarsToPlanes()
 		{
 			if (hangars.Count != planes.Count)
@@ -65,14 +97,17 @@ namespace Airport
 
 			for (int i = 0; i < planes.Count; i++)
 			{
-				hangars[i].Number = i;
+				hangars[i].Number = i + 1; // The hangars shouldn't start at 0.
 				planes[i].AssignHangar(hangars[i]);
 			}
 		}
 
+		/// <summary>
+		/// Assigns the onclick listeners.
+		/// </summary>
 		private void AssignUIButtonsToPlanes()
 		{
-			foreach (Plane.Plane plane in planes)
+			foreach (Plane plane in planes)
 			{
 				uiManager.LightsOn.AddListenerToOnClick(plane.LightsOn);
 				uiManager.LightsOff.AddListenerToOnClick(plane.LightsOff);
@@ -81,9 +116,12 @@ namespace Airport
 			}
 		}
 
-		private void UnassignUIButtonToPlanes()
+		/// <summary>
+		/// Unassigns the onclick listeners.
+		/// </summary>
+		private void UnassignUIButtonsToPlanes()
 		{
-			foreach (Plane.Plane plane in planes)
+			foreach (Plane plane in planes)
 			{
 				uiManager.LightsOn.RemoveListenerToOnClick(plane.LightsOn);
 				uiManager.LightsOff.RemoveListenerToOnClick(plane.LightsOff);
@@ -103,12 +141,14 @@ namespace Airport
 
 			foreach (Component component in Resources.FindObjectsOfTypeAll(typeof(T)))
 			{
-				if (!EditorUtility.IsPersistent(component.transform.root.gameObject) && !(component.hideFlags == HideFlags.NotEditable || component.hideFlags == HideFlags.HideAndDontSave))
+				if (!EditorUtility.IsPersistent(component.transform.root.gameObject) &&
+					!(component.hideFlags == HideFlags.NotEditable ||
+					component.hideFlags == HideFlags.HideAndDontSave))
 					objectsInScene.Add(component as T);
 			}
 
 			return objectsInScene;
 		}
-
+		#endregion
 	}
 }
