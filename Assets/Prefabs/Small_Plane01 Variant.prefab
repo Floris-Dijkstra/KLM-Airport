@@ -118,6 +118,19 @@ Halo:
     serializedVersion: 2
     rgba: 4278190335
   m_Size: 2
+--- !u!135 &3252507973509640400
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5465416358601127456}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 9.548764
+  m_Center: {x: 0, y: 2.3593533, z: -3.0109177}
 --- !u!114 &755265232961901454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,9 +144,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 7151096172431301963}
-  nextTargetRange: 100
+  destinationRange: 100
   agentRadiusMargin: 5
-  stopOnReachedDestination: 0
   OnDestinationReached:
     m_PersistentCalls:
       m_Calls: []
@@ -152,7 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c891228824379649893746333add170, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  propeller: {fileID: 6583464457406434441}
   movement: {fileID: 755265232961901454}
   lights: {fileID: 3536457395416917727}
   hangar: {fileID: 0}
@@ -171,6 +182,20 @@ MonoBehaviour:
   behaviours:
   - {fileID: 4296934797062247184}
   - {fileID: 3730566481162585094}
+--- !u!114 &3693847950392469634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5465416358601127456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 846b93b8d050cbc42af0d03249ea38b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planeScriptableObject: {fileID: 0}
+  planeInfoUI: {fileID: 0}
 --- !u!195 &7151096172431301963
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -193,33 +218,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!135 &3252507973509640400
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5465416358601127456}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 9.548764
-  m_Center: {x: 0, y: 2.3593533, z: -3.0109177}
---- !u!114 &3693847950392469634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5465416358601127456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 846b93b8d050cbc42af0d03249ea38b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  planeScriptableObject: {fileID: 0}
-  planeInfoUI: {fileID: 0}
 --- !u!114 &6583464457406434441
 MonoBehaviour:
   m_ObjectHideFlags: 0
